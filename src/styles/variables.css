@@ -1,0 +1,13 @@
+:root {
+    --brand-primary: #003366;
+    --brand-primary-hover: #004080;
+    --brand-light: #f0f4f8;
+    --brand-accent: #0056b3;
+    --text-main: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --bg-gradient-start: #f8fbff;
+    --bg-gradient-end: #d1dfed;
+    --surface: #ffffff;
+    --surface-border: #d1d5db;
+    --font-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}

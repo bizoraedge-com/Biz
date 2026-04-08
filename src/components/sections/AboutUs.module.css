@@ -1,0 +1,34 @@
+.imageWrapper {
+  position: relative;
+  padding: 20px 20px 0 0;
+}
+
+.aboutImg {
+  position: relative;
+  z-index: 2;
+  object-fit: cover;
+  border-radius: 16px;
+  width: 100%;
+}
+
+.decorativeSquare {
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, #E1F3FF 0%, #E1F3FF 100%);
+  border-radius: 16px;
+  z-index: 1;
+  border: 2px dashed #e2e8f0;
+}
+
+@media (max-width: 991px) {
+  .imageWrapper {
+    padding: 0;
+  }
+
+  .decorativeSquare {
+    display: none;
+  }
+}

@@ -1,0 +1,90 @@
+.stickyWrapper {
+    position: relative;
+    /* Ensure no overflow hidden on the wrapper so sticky works */
+}
+
+.stickyGroup {
+    position: sticky;
+    top: 70px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #f4fbfe !important;
+    z-index: 1;
+    /* will be overridden inline */
+    /* Add subtle shadow to top edge for depth when overlapping */
+}
+
+.solutionHeading {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.groupContent {
+    width: 100%;
+    padding-top: 30px;
+    /* Offset for the absolute heading if needed */
+}
+
+.imageWrapper {
+    height: 380px;
+    width: 85%;
+    margin: 0 auto;
+    max-height: 50vh;
+    overflow: hidden;
+    border-radius: 1.5rem;
+}
+
+.solutionImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.itemIcon {
+    color: #0d47a1;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 3px;
+}
+
+.itemTitle {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #111;
+}
+
+.itemDesc {
+    color: #444;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 991px) {
+    .stickyGroup {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 0 50px;
+    }
+
+    .imageWrapper {
+        height: 40vh;
+        margin-top: 2rem;
+    }
+
+    .solutionHeading {
+        top: 30px;
+    }
+
+    .groupContent {
+        padding-top: 20px;
+    }
+}

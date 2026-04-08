@@ -1,0 +1,313 @@
+.pageContainer {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--brand-primary);
+    cursor: pointer;
+}
+
+.logoExt {
+    color: var(--brand-accent);
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.chevronIcon {
+    width: 32px;
+    height: 32px;
+    background:
+        linear-gradient(135deg, var(--brand-accent) 0%, var(--brand-primary) 100%);
+    clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 50%, 50% 25%, 0 50%, 0 75%, 50% 50%, 100% 75%, 100% 100%, 50% 75%, 0 100%);
+    display: inline-block;
+}
+
+.nav {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.navLink {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-main);
+    transition: color 0.2s ease;
+}
+
+.navLink:hover {
+    color: var(--brand-primary);
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.primaryBtn {
+    background-color: var(--brand-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.primaryBtn:hover {
+    background-color: var(--brand-primary-hover);
+    transform: translateY(-1px);
+}
+
+.phoneIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--brand-primary);
+    transition: transform 0.2s ease;
+}
+
+.phoneIcon:hover {
+    transform: scale(1.1);
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    margin-top: 2rem;
+}
+
+.heroContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+}
+
+.heroTitle {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.heroActions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.secondaryLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--brand-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.secondaryLink:hover {
+    color: var(--brand-primary-hover);
+}
+
+/* Ripples Graphic */
+.heroGraphic {
+    position: relative;
+    width: 100%;
+    min-height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dynamicRing {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* i=0 is outer ring (600px), i=13 is inner ring (~150px) */
+    width: calc(600px - (var(--i) * 35px));
+    height: calc(600px - (var(--i) * 35px));
+    background-color: rgba(255, 255, 255, 0.03);
+
+    /* Subtle blur on outer rings (small i) */
+    filter: blur(calc((14 - var(--i)) * 0.3px));
+
+    /* Wobble animation with parallax durations */
+    /* Inner rings (large i) move slower */
+    animation: wobble calc(12s + (var(--i) * 2s)) infinite ease-in-out alternate;
+}
+
+.rippleCenter {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background-color: var(--surface);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 51, 102, 0.15);
+    z-index: 20;
+}
+
+@keyframes wobble {
+    0% {
+        transform: rotate(0deg) scale(0.98);
+        border-radius: 50%;
+    }
+
+    33% {
+        border-radius: 48% 52% 47% 53% / 51% 49% 52% 48%;
+    }
+
+    66% {
+        border-radius: 52% 48% 53% 47% / 49% 51% 48% 52%;
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1.02);
+        border-radius: 50%;
+    }
+}
+
+.chevronIconLarge {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--brand-accent) 0%, var(--brand-primary) 100%);
+    clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 50%, 50% 25%, 0 50%, 0 75%, 50% 50%, 100% 75%, 100% 100%, 50% 75%, 0 100%);
+    display: inline-block;
+}
+
+/* Services Section */
+.servicesContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 6rem;
+    gap: 4rem;
+    width: 100%;
+    margin-bottom: 4rem;
+    background-color: #f4fbfe;
+}
+
+.tabsWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background-color: transparent;
+}
+
+.tabItem,
+.tabItemActive {
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: transparent;
+    color: var(--brand-primary);
+    border: 1px solid transparent;
+}
+
+.tabItemActive {
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 14px rgba(0, 51, 102, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: var(--brand-primary);
+}
+
+.tabItem:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.servicesContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+}
+
+.servicesImageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    background-color: #dce5ef;
+    border-radius: 20px 20px 80px 20px;
+    padding: 1.5rem;
+    padding-bottom: 3rem;
+    display: flex;
+}
+
+.silkBackground {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background-image: url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 20px 40px rgba(0, 51, 102, 0.15);
+}
+
+.servicesText {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
+}
+
+.servicesText h2 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+
+.servicesText p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
