@@ -1,0 +1,120 @@
+.faqSection {
+  margin: 0;
+  padding: 6rem 2rem;
+  width: 100%;
+  background-color: var(--color-background-dark, #0a0f1c);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.faqGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faqItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.faqIcon {
+  color: #60a5fa;
+  transition: transform 0.3s ease;
+}
+
+.faqItem[data-active="true"] .faqIcon {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  padding: 0 2rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: #94a3b8;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.faqAnswer p {
+  color: inherit;
+  margin: 0;
+}
+
+.faqItem[data-active="true"] .faqAnswer {
+  padding: 0 2rem 1.5rem;
+  max-height: 500px;
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  .faqQuestion {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.05rem;
+  }
+  .faqAnswer {
+    padding: 0 1.5rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  .faqItem[data-active="true"] .faqAnswer {
+    padding: 0 1.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+  .faqQuestion {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  .faqAnswer {
+    padding: 0 1rem 1rem;
+  }
+  .faqItem[data-active="true"] .faqAnswer {
+    padding: 0 1rem 1rem;
+  }
+}

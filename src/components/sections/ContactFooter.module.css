@@ -1,0 +1,297 @@
+/* ---- FULL WIDTH CONTACT SECTION ---- */
+.section {
+    background-color: #111;
+    position: relative;
+    overflow: visible;
+    min-height: 580px;
+    width: 100%;
+    padding-top: 60px;
+}
+
+/* Stylized Map Background Overlay */
+.mapBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Line art map texture (SVG pattern) */
+    background-image:
+        linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)),
+        url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100h800M0 200h800M0 300h800M0 400h800M0 500h800M0 600h800M0 700h800M100 0v800M200 0v800M300 0v800M400 0v800M500 0v800M600 0v800M700 0v800M0 0l800 800M800 0L0 800M150 0v800M0 150h800' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3Cpath d='M100 100l50 50 100-20 80 80-20 100 150 20 50-80h100M0 600l100 20 50-80 150 100 200-50 100 150h200' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-size: cover;
+    opacity: 0.8;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Top Navigation */
+.topNav {
+    position: absolute;
+    top: 32px;
+    left: 48px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+}
+
+.topNavLine {
+    width: 40px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Main Heading Area */
+.headingWrapper {
+    position: absolute;
+    top: 45%;
+    left: 10%;
+    transform: translateY(-50%);
+    z-index: 1;
+    max-width: 500px;
+}
+
+.heading {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.headingSubtext {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+/* ---- FORM CARD (RIGHT) ---- */
+.formCardWrapper {
+    position: absolute;
+    top: 30px;
+    right: 10%;
+    width: 400px;
+    z-index: 10;
+}
+
+.formCard {
+    background: #fff;
+    border-radius: 4px;
+    padding: 40px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.feedbackLabel {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #000;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+}
+
+.formGroup {
+    margin-bottom: 30px;
+}
+
+.formInput {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0;
+    font-size: 0.9rem;
+    color: #333;
+    outline: none;
+    background: transparent;
+    transition: border-color 0.3s;
+}
+
+.formInput:focus {
+    border-bottom-color: #000;
+}
+
+.uploadRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/* Overlapping Button */
+.submitBtn {
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 18px 30px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submitBtn:hover {
+    background: #333;
+}
+
+/* ---- BOTTOM INFO AREA ---- */
+.bottomArea {
+    position: absolute;
+    bottom: 50px;
+    left: 10%;
+    right: 10%;
+    display: flex;
+    justify-content: flex-start;
+    /* Corrected to match multi-column */
+    gap: 8%;
+    /* Adjusted for more columns */
+    z-index: 1;
+}
+
+/* Branding Column Styling */
+.brandingCol {
+    flex: 1.5;
+    /* Larger branding area */
+    max-width: 300px;
+}
+
+.brandLabel {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.brandExt {
+    color: #1a73e8;
+}
+
+.brandDesc {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-top: 15px;
+}
+
+/* Traditional Column Styling */
+.footerCol {
+    flex: 1;
+}
+
+.columnTitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1.2px;
+    margin-bottom: 24px;
+}
+
+.footerList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footerListItem {
+    margin-bottom: 12px;
+}
+
+.footerLink {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 300;
+}
+
+.footerLink:hover {
+    color: #1a73e8;
+}
+
+/* ---- FOOTER COPYRIGHT BAR ---- */
+.footerBar {
+    background: #000;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 24px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+}
+
+.footerCopy {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    text-align: left;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1199px) {
+    .bottomArea {
+        gap: 5%;
+    }
+}
+
+@media (max-width: 991px) {
+    .section {
+        min-height: auto;
+        padding-top: 100px;
+    }
+
+    .heading {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        padding: 0 10%;
+        margin-bottom: 80px;
+    }
+
+    .formCardWrapper {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 100px;
+    }
+
+    .bottomArea {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        padding: 0 10% 60px;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footerBar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 40px 10%;
+    }
+
+    .footerCopy {
+        text-align: center;
+    }
+}

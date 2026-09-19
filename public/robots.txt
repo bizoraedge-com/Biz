@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /thank_you
+Disallow: /thank-you
+
+Sitemap: https://bizoraedge.com/sitemap.xml
