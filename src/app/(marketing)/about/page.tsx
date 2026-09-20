@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import React from 'react';
 import { ContactFooter } from '@/components/sections/ContactFooter';
+import styles from './about.module.css';
 
 export const metadata: Metadata = {
     title: 'About BizoraEdge | Software & Digital Solutions Company',
@@ -47,10 +48,49 @@ export default function AboutPage() {
     ];
 
     const ourApproach = [
-        { title: 'Start With the Business Problem', desc: 'Every business has different processes, customers, challenges, and goals. We begin by understanding the problem that technology needs to solve rather than simply building software for the sake of building software.' },
-        { title: 'Plan the Right Solution', desc: 'Once requirements are understood, we help define the appropriate features, user experience, technology approach, and development scope.' },
-        { title: 'Build With Purpose', desc: 'We develop solutions with attention to usability, scalability, security, maintainability, and the specific needs of the business.' },
-        { title: 'Grow With Technology', desc: 'Technology needs can evolve as a business grows. Our approach focuses on building solutions that can be improved, expanded, and adapted as requirements change.' }
+        { 
+            title: 'Start With the Business Problem', 
+            desc: 'Every business has different processes, customers, challenges, and goals. We begin by understanding the problem that technology needs to solve rather than simply building software for the sake of building software.',
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            )
+        },
+        { 
+            title: 'Plan the Right Solution', 
+            desc: 'Once requirements are understood, we help define the appropriate features, user experience, technology approach, and development scope.',
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+            )
+        },
+        { 
+            title: 'Build With Purpose', 
+            desc: 'We develop solutions with attention to usability, scalability, security, maintainability, and the specific needs of the business.',
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+            )
+        },
+        { 
+            title: 'Grow With Technology', 
+            desc: 'Technology needs can evolve as a business grows. Our approach focuses on building solutions that can be improved, expanded, and adapted as requirements change.',
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                    <polyline points="16 7 22 7 22 13"></polyline>
+                </svg>
+            )
+        }
     ];
 
     const whyBizoraEdge = [
@@ -125,13 +165,17 @@ export default function AboutPage() {
                     <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0' }} />
 
                     {/* Our Approach */}
-                    <div>
-                        <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#0f172a', marginBottom: '2rem', textAlign: 'center' }}>Our Approach</h2>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+                    <div className={styles.approachSection}>
+                        <h2 className={styles.approachTitle}>Our Approach</h2>
+                        <div className={styles.approachGrid}>
                             {ourApproach.map((v, i) => (
-                                <div key={i} style={{ padding: '1.5rem', backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', textAlign: 'center' }}>
-                                    <h4 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#0f172a', marginBottom: '0.75rem' }}>{v.title}</h4>
-                                    <p style={{ color: '#64748b', fontSize: '0.95rem' }}>{v.desc}</p>
+                                <div key={i} className={styles.approachCard}>
+                                    <div className={styles.stepNumber}>0{i + 1}</div>
+                                    <div className={styles.iconWrapper}>
+                                        {v.icon}
+                                    </div>
+                                    <h4 className={styles.cardTitle}>{v.title}</h4>
+                                    <p className={styles.cardDesc}>{v.desc}</p>
                                 </div>
                             ))}
                         </div>

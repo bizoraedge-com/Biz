@@ -153,7 +153,7 @@
 }
 
 /* Show megamenu on hover wrapper - using complex selector carefully */
-.navLinkWrapper:hover .megaMenu {
+.navLinkWrapper:not(.forceClose):hover .megaMenu {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
