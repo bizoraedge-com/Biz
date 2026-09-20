@@ -32,6 +32,10 @@ export async function POST(request: Request) {
 
         // 2. Insert all fields into D1 DB
         const db = getRequestContext().env.DB;
+        if (!db) {
+            console.error("Database binding 'DB' is missing in Cloudflare environment.");
+            return NextResponse.json({ success: false, message: 'Configuration error: DB binding missing on server.' }, { status: 500 });
+        }
         await db.prepare(
             `INSERT INTO contacts (name, email, phone, company_name, subject, description)
              VALUES (?, ?, ?, ?, ?, ?)`
@@ -106,6 +110,6 @@ export async function POST(request: Request) {
 
     } catch (error: any) {
         console.error('Contact API Error:', error);
-        return NextResponse.json({ success: false, message: 'Internal server error.' }, { status: 500 });
+        return NextResponse.json({ success: false, message: 'Internal server error.', error: error.message || String(error) }, { status: 500 });
     }
 }

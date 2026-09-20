@@ -59,7 +59,7 @@ export function Footer() {
                 { name: "Booking Application Development", href: "/services/booking-application-development" },
                 { name: "CRM Development", href: "/services/crm-development" },
                 { name: "IoT Solutions", href: "/services/iot-solutions" },
-                { name: "Mobile Application Development", href: "/services/mobile-application-development" },
+                { name: "Mobile Application Development", href: "/services/mobile-app-development" },
                 { name: "FinTech Solutions", href: "/services/fintech-solutions" },
                 { name: "AI-Powered Applications", href: "/services/ai-powered-applications" },
                 { name: "Blockchain Solutions", href: "/services/blockchain-development" },

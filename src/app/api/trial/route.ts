@@ -19,6 +19,10 @@ export async function POST(request: Request) {
 
         // 1. Insert into D1 Database (trials table)
         const db = getRequestContext().env.DB;
+        if (!db) {
+            console.error("Database binding 'DB' is missing in Cloudflare environment.");
+            return NextResponse.json({ success: false, message: 'Configuration error: DB binding missing on server.' }, { status: 500 });
+        }
         await db.prepare(
             `INSERT INTO trials (name, email, service_type, message)
              VALUES (?, ?, ?, ?)`
@@ -101,6 +105,6 @@ export async function POST(request: Request) {
         return NextResponse.json({ success: true, message: 'Trial requested successfully' }, { status: 200 });
     } catch (error: any) {
         console.error('Error in trial API:', error);
-        return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
+        return NextResponse.json({ success: false, message: 'Internal Server Error', error: error.message || String(error) }, { status: 500 });
     }
 }
