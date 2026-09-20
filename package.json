@@ -6,8 +6,6 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "deploy": "wrangler deploy",
-    "upload": "wrangler versions upload",
     "lint": "next lint"
   },
   "keywords": [],
