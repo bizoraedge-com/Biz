@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+export const runtime = 'edge';
+
 // ── Blog post data ──────────────────────────────────────────────────────────
 
 interface Section {
