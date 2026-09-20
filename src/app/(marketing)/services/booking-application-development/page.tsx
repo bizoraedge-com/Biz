@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function BookingApplicationDevelopmentPage() {
     return (
         <ServiceTemplate 
+            slug="booking-application-development"
             title="Custom Booking & Scheduling Applications"
             subtitle="Booking Application Development"
             description="We build custom booking and scheduling applications tailored for service businesses, healthcare, events, and hospitality with secure payment integrations."

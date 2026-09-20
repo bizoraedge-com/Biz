@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function CustomSoftwareDevelopmentPage() {
     return (
         <ServiceTemplate 
+            slug="custom-software-development"
             title="Custom Software Built for Your Business"
             subtitle="Custom Software Development"
             description="We design and build bespoke software solutions that align perfectly with your unique business processes, helping you operate more efficiently."

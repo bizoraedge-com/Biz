@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function SaasDevelopmentPage() {
     return (
         <ServiceTemplate 
+            slug="saas-development"
             title="Scalable SaaS Platforms for Growth"
             subtitle="SaaS Development"
             description="We build scalable Software as a Service (SaaS) products tailored to your business model with robust architectures, secure multi-tenancy, and high performance."

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function AiPoweredApplicationsPage() {
     return (
         <ServiceTemplate 
+            slug="ai-powered-applications"
             title="AI-Powered Applications for Smart Automation"
             subtitle="AI-Powered Applications"
             description="Integrate artificial intelligence to automate processes, unlock new capabilities, and provide intelligent insights for your business operations."
