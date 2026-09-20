@@ -6,7 +6,7 @@ export function useFetch<T>(url: string) {
 
     useEffect(() => {
         fetch(url)
-            .then((res) => res.json())
+            .then((res) => res.json() as any)
             .then((json) => {
                 setData(json);
                 setLoading(false);
