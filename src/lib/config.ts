@@ -1,15 +1,22 @@
+const getEnv = (key: string) => {
+    if (typeof process !== 'undefined' && process.env) {
+        return process.env[key];
+    }
+    return undefined;
+};
+
 export const config = {
     db: {
-        host: process.env.MYSQL_HOST || 'localhost',
-        user: process.env.MYSQL_USER || 'root',
-        password: process.env.MYSQL_PASSWORD || '',
-        database: process.env.MYSQL_DATABASE || 'BizoraEdge',
-        port: parseInt(process.env.MYSQL_PORT || '3306'),
+        host: getEnv('MYSQL_HOST') || 'localhost',
+        user: getEnv('MYSQL_USER') || 'root',
+        password: getEnv('MYSQL_PASSWORD') || '',
+        database: getEnv('MYSQL_DATABASE') || 'BizoraEdge',
+        port: parseInt(getEnv('MYSQL_PORT') || '3306'),
     },
     email: {
-        smtpEmail: process.env.SMTP_EMAIL || 'business@bizoraedge.com',
-        smtpPassword: process.env.SMTP_PASSWORD || 'wbrn ongq ewvw zjli',
-        notificationEmail: process.env.NOTIFICATION_EMAIL || 'business@bizoraedge.com',
-        resendApiKey: process.env.RESEND_API_KEY || '',
+        smtpEmail: getEnv('SMTP_EMAIL') || 'business@bizoraedge.com',
+        smtpPassword: getEnv('SMTP_PASSWORD') || 'wbrn ongq ewvw zjli',
+        notificationEmail: getEnv('NOTIFICATION_EMAIL') || 'business@bizoraedge.com',
+        resendApiKey: getEnv('RESEND_API_KEY') || '',
     }
 };
