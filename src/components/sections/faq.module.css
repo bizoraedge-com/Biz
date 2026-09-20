@@ -95,7 +95,7 @@
     font-size: 1.05rem;
   }
   .faqAnswer {
-    padding: 0 1.5rem 1.5rem;
+    padding: 0 1.5rem;
     font-size: 0.95rem;
   }
   .faqItem[data-active="true"] .faqAnswer {

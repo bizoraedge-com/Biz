@@ -148,13 +148,13 @@ export function Footer() {
             <div className={styles.footerBar}>
                 <div className="container-fluid px-5">
                     <div className="row align-items-center">
-                        <div className="col-md-6 d-flex align-items-center">
+                        <div className="col-md-6 d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start gap-2 gap-md-0 mb-3 mb-md-0 text-center text-md-start">
                             <Link href="/" className={styles.footerLogoLink}>
                                 <img src="/images/logo-dark.png" alt="BizoraEdge Logo" style={{ height: '36px', width: 'auto' }} />
                             </Link>
-                            <span style={{ marginLeft: '1rem', color: '#666', fontSize: '0.9rem' }}>Technology Built Around Your Business.</span>
+                            <span style={{ color: '#666', fontSize: '0.9rem' }} className="ms-md-3 mt-2 mt-md-0">Technology Built Around Your Business.</span>
                         </div>
-                        <div className="col-md-6 text-md-end">
+                        <div className="col-md-6 text-center text-md-end">
                             <span className={styles.footerCopy}>© {new Date().getFullYear()} BizoraEdge. All rights reserved.</span>
                         </div>
                     </div>

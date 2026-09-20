@@ -147,15 +147,17 @@ export function CoreSolutions() {
             })}
 
             {/* Section CTA */}
-            <div className="container mt-5 pt-5 pb-4 position-relative" style={{ zIndex: 10 }}>
-                <div className="text-center mx-auto" style={{ maxWidth: '800px' }}>
-                    <h2 className="fw-bold text-dark mb-4" style={{ fontSize: '2.5rem' }}>Have an Idea? Let's Build It.</h2>
-                    <p className="text-secondary mb-5" style={{ fontSize: '1.1rem' }}>
-                        Have a software idea or a business challenge you'd like to solve with technology? Tell BizoraEdge what you want to build, and let's explore the right digital solution for your business.
-                    </p>
-                    <div className="d-flex justify-content-center gap-3">
-                        <a href="/quote" className="btn btn-primary px-4 py-2 fw-medium" style={{ backgroundColor: '#0d47a1', borderColor: '#0d47a1', borderRadius: '8px' }}>Get a Free Quote</a>
-                        <a href="/contact" className="btn btn-outline-primary px-4 py-2 fw-medium" style={{ borderRadius: '8px' }}>Talk to Our Experts</a>
+            <div className="position-relative" style={{ zIndex: 10, backgroundColor: '#f4fbfe', width: '100%', padding: '6rem 0' }}>
+                <div className="container">
+                    <div className="text-center mx-auto" style={{ maxWidth: '800px' }}>
+                        <h2 className="fw-bold text-dark mb-4" style={{ fontSize: '2.5rem' }}>Have an Idea? Let's Build It.</h2>
+                        <p className="text-secondary mb-5" style={{ fontSize: '1.1rem' }}>
+                            Have a software idea or a business challenge you'd like to solve with technology? Tell BizoraEdge what you want to build, and let's explore the right digital solution for your business.
+                        </p>
+                        <div className="d-flex justify-content-center gap-3">
+                            <a href="/quote" className="btn btn-primary px-4 py-2 fw-medium" style={{ backgroundColor: '#0d47a1', borderColor: '#0d47a1', borderRadius: '8px' }}>Get a Free Quote</a>
+                            <a href="/contact" className="btn btn-outline-primary px-4 py-2 fw-medium" style={{ borderRadius: '8px' }}>Talk to Our Experts</a>
+                        </div>
                     </div>
                 </div>
             </div>
