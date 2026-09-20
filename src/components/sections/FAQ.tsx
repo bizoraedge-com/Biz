@@ -81,7 +81,7 @@ export function FAQ() {
     return (
         <section className={styles.faqSection}>
             <div className={styles.sectionHeader}>
-                <h2 className={styles.sectionTitle}>Frequently Asked Questions About Our Software Development Services</h2>
+                <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
                 <p style={{ color: '#64748b', fontSize: '1.1rem', maxWidth: '800px', margin: '0 auto' }}>
                     Have questions about software development, SaaS, mobile applications, AI, CRM, FinTech, or other digital solutions? Find answers to some of the common questions businesses ask before starting a technology project with BizoraEdge.
                 </p>

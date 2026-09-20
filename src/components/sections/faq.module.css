@@ -30,16 +30,17 @@
 
 .faqItem {
   background: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid rgba(226, 232, 240, 1);
   border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
 }
 
 .faqItem:hover {
   background: #ffffff;
   border-color: #3b82f6;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.12);
 }
 
 .faqQuestion {
