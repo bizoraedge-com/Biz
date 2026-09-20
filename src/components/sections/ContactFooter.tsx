@@ -134,11 +134,7 @@ export function ContactFooter() {
                             />
                         </div>
 
-                        {/* Upload File Row */}
-                        <div className={styles.uploadRow}>
-                            <span style={{ fontSize: '1.2rem' }}>☁️</span>
-                            <span>Upload file</span>
-                        </div>
+
 
                         {status === 'error' && (
                             <div style={{ color: '#ff4d4d', fontSize: '0.85rem', marginTop: '-0.5rem', marginBottom: '0.5rem' }}>
