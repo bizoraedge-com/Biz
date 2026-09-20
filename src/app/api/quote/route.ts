@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getRequestContext } from '@cloudflare/next-on-pages';
-import { Resend } from 'resend';
+import { sendEmail } from '@/lib/sendEmail';
 import { config } from '@/lib/config';
 import { QuoteEmailTemplate } from '@/components/email/QuoteEmailTemplate';
 
@@ -82,18 +82,19 @@ export async function POST(request: Request) {
         const env = getRequestContext().env as any;
         const resendApiKey = env.RESEND_API_KEY || config.email.resendApiKey;
         const notificationEmail = env.NOTIFICATION_EMAIL || config.email.notificationEmail;
-        const resend = new Resend(resendApiKey);
 
-        // 5. Execute email sending in parallel via Resend
+        // 5. Execute email sending in parallel via Resend API HTTP fallback
         await Promise.all([
-            resend.emails.send({
+            sendEmail({
+                apiKey:  resendApiKey,
                 from:    'BizoraEdge Quotes <info@bizoraedge.com>',
                 to:      notificationEmail,
                 subject: `New Quote Request: ${name}`,
                 replyTo: email,
                 html:    adminEmailHtml,
             }),
-            resend.emails.send({
+            sendEmail({
+                apiKey:  resendApiKey,
                 from:    'BizoraEdge Team <info@bizoraedge.com>',
                 to:      email,
                 subject: 'We received your Quote Request!',

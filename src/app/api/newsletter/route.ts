@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getRequestContext } from '@cloudflare/next-on-pages';
-import { Resend } from 'resend';
+import { sendEmail } from '@/lib/sendEmail';
 import { config } from '@/lib/config';
 import { NewsletterEmailTemplate } from '@/components/email/NewsletterEmailTemplate';
 
@@ -78,18 +78,19 @@ export async function POST(request: Request) {
         const env = getRequestContext().env as any;
         const resendApiKey = env.RESEND_API_KEY || config.email.resendApiKey;
         const notificationEmail = env.NOTIFICATION_EMAIL || config.email.notificationEmail;
-        const resend = new Resend(resendApiKey);
 
         // 5. Execute email sending in parallel
         await Promise.all([
-            resend.emails.send({
+            sendEmail({
+                apiKey:  resendApiKey,
                 from:    'BizoraEdge Newsletter <info@bizoraedge.com>',
                 to:      notificationEmail,
                 subject: `New Newsletter Subscription: ${email}`,
                 replyTo: email,
                 html:    adminEmailHtml,
             }),
-            resend.emails.send({
+            sendEmail({
+                apiKey:  resendApiKey,
                 from:    'BizoraEdge Team <info@bizoraedge.com>',
                 to:      email,
                 subject: 'Welcome to the BizoraEdge Newsletter',

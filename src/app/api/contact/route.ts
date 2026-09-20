@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getRequestContext } from '@cloudflare/next-on-pages';
-import { Resend } from 'resend';
+import { sendEmail } from '@/lib/sendEmail';
 import { ContactEmailTemplate } from '@/components/email/ContactEmailTemplate';
 import { z } from 'zod';
 import { config } from '@/lib/config';
@@ -90,16 +90,17 @@ export async function POST(request: Request) {
         const env = getRequestContext().env as any;
         const resendApiKey = env.RESEND_API_KEY || config.email.resendApiKey;
         const notificationEmail = env.NOTIFICATION_EMAIL || config.email.notificationEmail;
-        const resend = new Resend(resendApiKey);
         
         await Promise.all([
-            resend.emails.send({
+            sendEmail({
+                apiKey:  resendApiKey,
                 from:    'BizoraEdge Contact <info@bizoraedge.com>',
                 to:      notificationEmail,
                 subject: `New Lead: ${name}${companyName ? ` (${companyName})` : ''}`,
                 html:    `<!DOCTYPE html>${emailHtml}`,
             }),
-            resend.emails.send({
+            sendEmail({
+                apiKey:  resendApiKey,
                 from:    'BizoraEdge Team <info@bizoraedge.com>',
                 to:      email,
                 subject: 'Thank You for Contacting BizoraEdge',

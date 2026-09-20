@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getRequestContext } from '@cloudflare/next-on-pages';
-import { Resend } from 'resend';
+import { sendEmail } from '@/lib/sendEmail';
 import { config } from '@/lib/config';
 import { ServiceEmailTemplate } from '@/components/email/ServiceEmailTemplate';
 
@@ -85,18 +85,19 @@ export async function POST(request: Request) {
         const env = getRequestContext().env as any;
         const resendApiKey = env.RESEND_API_KEY || config.email.resendApiKey;
         const notificationEmail = env.NOTIFICATION_EMAIL || config.email.notificationEmail;
-        const resend = new Resend(resendApiKey);
 
-        // 5. Execute email sending in parallel (non-blocking)
+        // 5. Execute email sending in parallel (non-blocking) via Resend API HTTP fallback
         Promise.all([
-            resend.emails.send({
+            sendEmail({
+                apiKey:  resendApiKey,
                 from:    'BizoraEdge Services <info@bizoraedge.com>',
                 to:      notificationEmail,
                 subject: `New Service Request: ${nameStr} - ${serviceTypeText}`,
                 replyTo: emailStr,
                 html:    adminEmailHtml,
             }),
-            resend.emails.send({
+            sendEmail({
+                apiKey:  resendApiKey,
                 from:    'BizoraEdge Team <info@bizoraedge.com>',
                 to:      emailStr,
                 subject: 'We received your Service Request!',
