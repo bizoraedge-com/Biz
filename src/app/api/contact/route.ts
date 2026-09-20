@@ -19,7 +19,7 @@ const contactSchema = z.object({
 
 export async function POST(request: Request) {
     try {
-        const body = await request.json();
+        const body = (await request.json()) as any;
 
         // 1. Validate input
         const result = contactSchema.safeParse(body);
