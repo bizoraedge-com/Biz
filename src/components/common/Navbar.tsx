@@ -41,7 +41,7 @@ export function Navbar() {
         <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
             <div className={styles.logo}>
                 <Link href="/">
-                    <img src="/images/IMG-20260920-WA0012.jpg" alt="BizoraEdge Logo" style={{ height: '36px', width: 'auto' }} />
+                    <img src="/images/IMG-20260920-WA0012.jpg" alt="BizoraEdge Logo" style={{ height: '64px', width: 'auto' }} />
                 </Link>
             </div>
 
@@ -207,7 +207,7 @@ export function Navbar() {
             <div className={`${styles.offcanvasSidebar} ${isMenuOpen ? styles.offcanvasOpen : ''}`}>
                 <div className={styles.offcanvasHeader}>
                     <Link href="/">
-                        <img src="/images/IMG-20260920-WA0012.jpg" alt="BizoraEdge Logo" style={{ height: '36px', width: 'auto' }} />
+                        <img src="/images/IMG-20260920-WA0012.jpg" alt="BizoraEdge Logo" style={{ height: '56px', width: 'auto' }} />
                     </Link>
                     <button className={styles.closeBtn} onClick={() => setIsMenuOpen(false)}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
