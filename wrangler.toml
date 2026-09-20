@@ -1,5 +1,5 @@
 name = "bizoraedge"
-compatibility_date = "2024-03-20"
+compatibility_date = "2024-09-20"
 pages_build_output_dir = ".vercel/output/static"
 compatibility_flags = ["nodejs_compat"]
 
