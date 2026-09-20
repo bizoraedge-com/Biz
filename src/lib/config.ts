@@ -7,9 +7,9 @@ export const config = {
         port: parseInt(process.env.MYSQL_PORT || '3306'),
     },
     email: {
-        smtpEmail: process.env.SMTP_EMAIL || 'venkateshwarink@gmail.com',
+        smtpEmail: process.env.SMTP_EMAIL || 'business@bizoraedge.com',
         smtpPassword: process.env.SMTP_PASSWORD || 'wbrn ongq ewvw zjli',
-        notificationEmail: process.env.NOTIFICATION_EMAIL || 'venkateshwarink@gmail.com',
+        notificationEmail: process.env.NOTIFICATION_EMAIL || 'business@bizoraedge.com',
         resendApiKey: process.env.RESEND_API_KEY || '',
     }
 };

@@ -16,7 +16,7 @@ interface ServiceTemplateProps {
     subtitle: string;
     description: string;
     benefits: string[];
-    slug: string;
+    slug?: string;
     faq?: FAQ[]; // Kept for backwards compatibility with service pages
 }
 
