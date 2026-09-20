@@ -3,4 +3,7 @@ compatibility_date = "2024-03-20"
 pages_build_output_dir = ".vercel/output/static"
 compatibility_flags = ["nodejs_compat"]
 
-
+[[d1_databases]]
+binding = "DB"
+database_name = "bizora_db"
+database_id = "557d949a-81b6-4381-894f-3e250cbdc2b3"
