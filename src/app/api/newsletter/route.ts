@@ -75,13 +75,16 @@ export async function POST(request: Request) {
             </div>
         `;
 
-        const resend = new Resend(config.email.resendApiKey);
+        const env = getRequestContext().env as any;
+        const resendApiKey = env.RESEND_API_KEY || config.email.resendApiKey;
+        const notificationEmail = env.NOTIFICATION_EMAIL || config.email.notificationEmail;
+        const resend = new Resend(resendApiKey);
 
         // 5. Execute email sending in parallel
         await Promise.all([
             resend.emails.send({
                 from:    'BizoraEdge Newsletter <info@bizoraedge.com>',
-                to:      config.email.notificationEmail,
+                to:      notificationEmail,
                 subject: `New Newsletter Subscription: ${email}`,
                 replyTo: email,
                 html:    adminEmailHtml,

@@ -87,12 +87,15 @@ export async function POST(request: Request) {
         `;
 
         // 5. Send both emails in parallel via Resend API
-        const resend = new Resend(config.email.resendApiKey);
+        const env = getRequestContext().env as any;
+        const resendApiKey = env.RESEND_API_KEY || config.email.resendApiKey;
+        const notificationEmail = env.NOTIFICATION_EMAIL || config.email.notificationEmail;
+        const resend = new Resend(resendApiKey);
         
         await Promise.all([
             resend.emails.send({
                 from:    'BizoraEdge Contact <info@bizoraedge.com>',
-                to:      config.email.notificationEmail,
+                to:      notificationEmail,
                 subject: `New Lead: ${name}${companyName ? ` (${companyName})` : ''}`,
                 html:    `<!DOCTYPE html>${emailHtml}`,
             }),
