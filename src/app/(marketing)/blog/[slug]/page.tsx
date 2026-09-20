@@ -2,9 +2,13 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export const runtime = 'edge';
+export const dynamicParams = false;
 
-// ── Blog post data ──────────────────────────────────────────────────────────
+export function generateStaticParams() {
+    return Object.keys(BLOG_POSTS).map((slug) => ({
+        slug,
+    }));
+}// ── Blog post data ──────────────────────────────────────────────────────────
 
 interface Section {
     heading: string;

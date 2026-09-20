@@ -1,8 +1,20 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export const runtime = 'edge';
+export const dynamicParams = false;
 
+export function generateStaticParams() {
+    const slugs = [
+        'cooking-app',
+        'real-estate-crm',
+        'fleet-tracking-iot',
+        'crypto-payment-gateway',
+        'patient-health-app',
+        'algo-trading-platform',
+        'university-erp-system'
+    ];
+    return slugs.map((slug) => ({ slug }));
+}
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const resolvedParams = await params;
     const slug = resolvedParams?.slug || '';
