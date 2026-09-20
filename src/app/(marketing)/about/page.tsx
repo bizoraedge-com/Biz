@@ -116,19 +116,19 @@ export default function AboutPage() {
     return (
         <main style={{ width: '100%', backgroundColor: '#f8fafc', paddingTop: '80px', paddingBottom: '80px' }}>
             {/* Hero Section */}
-            <section style={{ backgroundColor: '#03142c', color: '#ffffff', padding: 'clamp(4rem, 10vw, 6rem) clamp(1rem, 5vw, 2rem) clamp(5rem, 12vw, 8rem)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0.1, backgroundImage: 'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop")', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <section style={{ backgroundColor: '#ffffff', color: '#0f172a', padding: 'clamp(4rem, 10vw, 6rem) clamp(1rem, 5vw, 2rem) clamp(5rem, 12vw, 8rem)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0.05, backgroundImage: 'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop")', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
                 <div style={{ position: 'relative', zIndex: 1, maxWidth: '900px', margin: '0 auto' }}>
-                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '-0.02em', color: '#fff' }}>
-                        Building Technology <span style={{ color: '#60a5fa' }}>Around Your Business</span>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '-0.02em', color: '#0f172a' }}>
+                        Building Technology <span style={{ color: '#0ea5e9' }}>Around Your Business</span>
                     </h1>
-                    <p style={{ fontSize: '1.25rem', color: '#cbd5e1', lineHeight: 1.8 }}>
+                    <p style={{ fontSize: '1.25rem', color: '#475569', lineHeight: 1.8 }}>
                         BizoraEdge is a technology and software development company focused on creating practical digital solutions for businesses, startups, and organizations.
                     </p>
-                    <p style={{ fontSize: '1.1rem', color: '#94a3b8', lineHeight: 1.6, marginTop: '1rem' }}>
+                    <p style={{ fontSize: '1.1rem', color: '#64748b', lineHeight: 1.6, marginTop: '1rem' }}>
                         We help transform business ideas, requirements, and challenges into modern software solutions designed around real business needs. From custom software and SaaS platforms to mobile applications, CRM systems, AI-powered applications, FinTech, blockchain, IoT, and booking solutions, we focus on building technology that supports business growth and operational efficiency.
                     </p>
-                    <p style={{ fontSize: '1.5rem', color: '#fff', fontWeight: 'bold', marginTop: '2rem' }}>
+                    <p style={{ fontSize: '1.5rem', color: '#0f172a', fontWeight: 'bold', marginTop: '2rem' }}>
                         BizoraEdge — Build Better. Grow Smarter.
                     </p>
                 </div>

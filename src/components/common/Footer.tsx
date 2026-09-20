@@ -150,7 +150,7 @@ export function Footer() {
                     <div className="row align-items-center">
                         <div className="col-md-6 d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start gap-2 gap-md-0 mb-3 mb-md-0 text-center text-md-start">
                             <Link href="/" className={styles.footerLogoLink}>
-                                <img src="/images/logo-dark.png" alt="BizoraEdge Logo" style={{ height: '36px', width: 'auto' }} />
+                                <img src="/images/IMG-20260920-WA0014.jpg" alt="BizoraEdge Logo" style={{ height: '36px', width: 'auto' }} />
                             </Link>
                             <span style={{ color: '#666', fontSize: '0.9rem' }} className="ms-md-3 mt-2 mt-md-0">Technology Built Around Your Business.</span>
                         </div>

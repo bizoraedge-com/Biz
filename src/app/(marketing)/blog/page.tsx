@@ -89,16 +89,16 @@ export default function BlogPage() {
                 }
             `}} />
 
-            <section style={{ backgroundColor: '#03142c', color: '#ffffff', padding: 'clamp(6rem, 15vw, 12rem) clamp(1rem, 5vw, 2rem) clamp(4rem, 10vw, 8rem)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+            <section style={{ backgroundColor: '#ffffff', color: '#0f172a', padding: 'clamp(6rem, 15vw, 12rem) clamp(1rem, 5vw, 2rem) clamp(4rem, 10vw, 8rem)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'relative', zIndex: 1, maxWidth: '900px', margin: '0 auto' }}>
-                    <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '-0.02em', color: '#fff' }}>
+                    <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '-0.02em', color: '#0f172a' }}>
                         Insights for Businesses Building With Technology
                     </h1>
-                    <p style={{ fontSize: '1.25rem', color: '#cbd5e1', lineHeight: 1.8 }}>
+                    <p style={{ fontSize: '1.25rem', color: '#475569', lineHeight: 1.8 }}>
                         Technology moves quickly.
                     </p>
-                    <p style={{ fontSize: '1.1rem', color: '#94a3b8', lineHeight: 1.6, marginTop: '1rem' }}>
-                        We write about what actually matters for businesses trying to build better digital products, automate their operations and understand their options.
+                    <p style={{ fontSize: '1.1rem', color: '#64748b', lineHeight: 1.6, marginTop: '1rem' }}>
+                        Our blog provides insights on software development, digital platforms, operations, and the role of technology in business today.
                     </p>
                 </div>
             </section>

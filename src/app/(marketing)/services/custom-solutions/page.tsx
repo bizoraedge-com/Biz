@@ -10,13 +10,15 @@ export const metadata: Metadata = {
 export default function CustomSolutionsPage() {
     return (
         <main style={{ width: '100%', backgroundColor: '#f8fafc', paddingTop: '80px', paddingBottom: '80px' }}>
-            <section style={{ backgroundColor: '#03142c', color: '#ffffff', padding: 'clamp(4rem, 10vw, 6rem) clamp(1rem, 5vw, 2rem) clamp(5rem, 12vw, 8rem)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+            {/* Hero Section */}
+            <section style={{ backgroundColor: '#ffffff', color: '#0f172a', padding: 'clamp(4rem, 10vw, 6rem) clamp(1rem, 5vw, 2rem) clamp(5rem, 12vw, 8rem)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0.05, backgroundImage: 'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop")', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
                 <div style={{ position: 'relative', zIndex: 1, maxWidth: '900px', margin: '0 auto' }}>
-                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '-0.02em', color: '#fff' }}>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '-0.02em', color: '#0f172a' }}>
                         When Your Business Needs a Solution That <span style={{ color: '#60a5fa' }}>Doesn't Come in a Box</span>
                     </h1>
-                    <p style={{ fontSize: '1.25rem', color: '#cbd5e1', lineHeight: 1.8 }}>
-                        Not every technology requirement fits neatly into a predefined category.
+                    <p style={{ fontSize: '1.25rem', color: '#475569', lineHeight: 1.8 }}>
+                        Tailored software crafted for your unique needs.
                     </p>
                     <p style={{ fontSize: '1.1rem', color: '#94a3b8', lineHeight: 1.6, marginTop: '1rem' }}>
                         BizoraEdge can work with you to design custom applications, automation tools, dashboards, portals and integrations around specialized business requirements.

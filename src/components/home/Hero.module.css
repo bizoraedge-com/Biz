@@ -1,11 +1,11 @@
 .heroSection {
-  background-color: var(--color-background-dark);
+  background-color: var(--color-background-light);
   min-height: 85vh;
   padding-top: 100px;
 }
 
 .heroHeading {
-  color: var(--color-text-inverse);
+  color: var(--color-secondary);
   font-size: clamp(40px, 4vw, 56px);
   line-height: 1.1;
   letter-spacing: -0.04em;
