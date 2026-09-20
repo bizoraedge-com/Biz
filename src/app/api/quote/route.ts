@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
-import pool from '@/lib/db';
-import nodemailer from 'nodemailer';
+import { getRequestContext } from '@cloudflare/next-on-pages';
+import { Resend } from 'resend';
 import { config } from '@/lib/config';
 import { QuoteEmailTemplate } from '@/components/email/QuoteEmailTemplate';
+
+export const runtime = 'edge';
 
 export async function POST(request: Request) {
     try {
@@ -13,29 +15,14 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: false, message: 'Missing required fields' }, { status: 400 });
         }
 
-        // Add phone column if not exists
-        await pool.execute(`ALTER TABLE quotes ADD COLUMN IF NOT EXISTS phone VARCHAR(20) AFTER email`).catch(() => {});
+        // 1. Insert into D1 Database (quotes table)
+        const db = getRequestContext().env.DB;
+        await db.prepare(
+            `INSERT INTO quotes (name, email, phone, project_type, message)
+             VALUES (?, ?, ?, ?, ?)`
+        ).bind(name, email, phone, 'Not specified', message).run();
 
-        // 1. Insert into MySQL Database (quotes table)
-        const query = `
-            INSERT INTO quotes (name, email, phone, project_type, message)
-            VALUES (?, ?, ?, ?, ?)
-        `;
-        const values = [name, email, phone, 'Not specified', message];
-        await pool.execute(query, values);
-
-        // 2. Setup Nodemailer Transporter
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: config.email.smtpEmail,
-                pass: config.email.smtpPassword,
-            },
-        });
-
-        const notificationEmail = config.email.notificationEmail;
-
-        // 3. Format Current Time (IST)
+        // 2. Format Current Time (IST)
         const submittedAt = new Date().toLocaleString('en-IN', {
             timeZone: 'Asia/Kolkata',
             year: 'numeric',
@@ -47,7 +34,7 @@ export async function POST(request: Request) {
             hour12: true,
         }) + ' IST';
 
-        // 4. Format Admin Email HTML
+        // 3. Format Admin Email HTML
         const emailHtml = QuoteEmailTemplate({ 
             name, 
             email, 
@@ -57,16 +44,7 @@ export async function POST(request: Request) {
         });
         const adminEmailHtml = `<!DOCTYPE html>${emailHtml}`;
 
-        // 5. Send Admin Email
-        const sendAdminEmail = transporter.sendMail({
-            from: `"BizoraEdge Quotes" <${config.email.smtpEmail}>`,
-            to: notificationEmail,
-            subject: `New Quote Request: ${name}`,
-            replyTo: email,
-            html: adminEmailHtml,
-        });
-
-        // 6. Send User Auto-Responder
+        // 4. Send User Auto-Responder
         const autoResponderHtml = `
             <div style="font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #f3f4f6; padding: 40px 20px; width: 100%;">
                 <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); margin: 0 auto;">
@@ -97,15 +75,24 @@ export async function POST(request: Request) {
             </div>
         `;
 
-        const sendUserEmail = transporter.sendMail({
-            from: `"BizoraEdge Team" <${config.email.smtpEmail}>`,
-            to: email,
-            subject: 'We received your Quote Request!',
-            html: autoResponderHtml,
-        });
+        const resend = new Resend(config.email.resendApiKey);
 
-        // Execute email sending in the background without blocking the response (prevents UI hanging)
-        Promise.all([sendAdminEmail, sendUserEmail]).catch(err => {
+        // 5. Execute email sending in parallel via Resend
+        await Promise.all([
+            resend.emails.send({
+                from:    'BizoraEdge Quotes <info@bizoraedge.com>',
+                to:      config.email.notificationEmail,
+                subject: `New Quote Request: ${name}`,
+                replyTo: email,
+                html:    adminEmailHtml,
+            }),
+            resend.emails.send({
+                from:    'BizoraEdge Team <info@bizoraedge.com>',
+                to:      email,
+                subject: 'We received your Quote Request!',
+                html:    autoResponderHtml,
+            })
+        ]).catch(err => {
             console.error("Email sending failed in background:", err);
         });
 
@@ -115,4 +102,3 @@ export async function POST(request: Request) {
         return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
     }
 }
-

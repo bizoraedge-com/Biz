@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
-import pool from '@/lib/db';
-import nodemailer from 'nodemailer';
+import { getRequestContext } from '@cloudflare/next-on-pages';
+import { Resend } from 'resend';
 import { ContactEmailTemplate } from '@/components/email/ContactEmailTemplate';
 import { z } from 'zod';
 import { config } from '@/lib/config';
+
+export const runtime = 'edge';
 
 // ── Validation schema ────────────────────────────────────────────────────────
 const contactSchema = z.object({
@@ -28,19 +30,14 @@ export async function POST(request: Request) {
 
         const { name, email, phone, companyName, subject, description } = result.data;
 
-        // 2. Ensure columns exist (safe migration for existing tables)
-        await pool.execute(`ALTER TABLE contacts ADD COLUMN IF NOT EXISTS phone        VARCHAR(20)   AFTER email`).catch(() => {});
-        await pool.execute(`ALTER TABLE contacts ADD COLUMN IF NOT EXISTS company_name VARCHAR(255)  AFTER phone`).catch(() => {});
-        await pool.execute(`ALTER TABLE contacts ADD COLUMN IF NOT EXISTS subject      VARCHAR(255)  AFTER company_name`).catch(() => {});
-
-        // 3. Insert all fields into DB
-        await pool.execute(
+        // 2. Insert all fields into D1 DB
+        const db = getRequestContext().env.DB;
+        await db.prepare(
             `INSERT INTO contacts (name, email, phone, company_name, subject, description)
-             VALUES (?, ?, ?, ?, ?, ?)`,
-            [name, email, phone, companyName || null, subject || null, description]
-        );
+             VALUES (?, ?, ?, ?, ?, ?)`
+        ).bind(name, email, phone, companyName || null, subject || null, description).run();
 
-        // 4. Format submission time (IST)
+        // 3. Format submission time (IST)
         const submittedAt = new Date().toLocaleString('en-IN', {
             timeZone:  'Asia/Kolkata',
             year:      'numeric',
@@ -52,7 +49,7 @@ export async function POST(request: Request) {
             hour12:    true,
         }) + ' IST';
 
-        // 5. Build admin email HTML
+        // 4. Build admin email HTML
         const emailHtml = ContactEmailTemplate({ name, email, phone, companyName, subject, description, submittedAt });
 
         const autoResponderHtml = `
@@ -85,27 +82,24 @@ export async function POST(request: Request) {
             </div>
         `;
 
-        // 7. Send both emails in parallel
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: { user: config.email.smtpEmail, pass: config.email.smtpPassword },
-        });
-
+        // 5. Send both emails in parallel via Resend API
+        const resend = new Resend(config.email.resendApiKey);
+        
         await Promise.all([
-            transporter.sendMail({
-                from:    `"BizoraEdge Contact" <${config.email.smtpEmail}>`,
+            resend.emails.send({
+                from:    'BizoraEdge Contact <info@bizoraedge.com>',
                 to:      config.email.notificationEmail,
                 subject: `New Lead: ${name}${companyName ? ` (${companyName})` : ''}`,
                 html:    `<!DOCTYPE html>${emailHtml}`,
             }),
-            transporter.sendMail({
-                from:    `"BizoraEdge Team" <${config.email.smtpEmail}>`,
+            resend.emails.send({
+                from:    'BizoraEdge Team <info@bizoraedge.com>',
                 to:      email,
                 subject: 'Thank You for Contacting BizoraEdge',
                 html:    autoResponderHtml,
-            }),
+            })
         ]).catch(err => {
-            console.error("Email sending failed in background:", err);
+            console.error("Email sending failed:", err);
         });
 
         return NextResponse.json({ success: true, message: 'Message received and emails sent successfully.' });

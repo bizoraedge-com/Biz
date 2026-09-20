@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
-import pool from '@/lib/db';
-import nodemailer from 'nodemailer';
+import { getRequestContext } from '@cloudflare/next-on-pages';
+import { Resend } from 'resend';
 import { config } from '@/lib/config';
 import { TrialEmailTemplate } from '@/components/email/TrialEmailTemplate';
+
+export const runtime = 'edge';
 
 export async function POST(request: Request) {
     try {
@@ -13,27 +15,16 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: false, message: 'Missing required fields' }, { status: 400 });
         }
 
-        // 1. Insert into MySQL Database (trials table)
-        const query = `
-            INSERT INTO trials (name, email, service_type, message)
-            VALUES (?, ?, ?, ?)
-        `;
-        const values = [name, email, serviceType || 'Not specified', message || ''];
-        await pool.execute(query, values);
-
-        // 2. Setup Nodemailer Transporter
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: config.email.smtpEmail,
-                pass: config.email.smtpPassword,
-            },
-        });
-
-        const notificationEmail = config.email.notificationEmail;
         const serviceTypeText = serviceType || 'Not specified';
 
-        // 3. Format Current Time (IST)
+        // 1. Insert into D1 Database (trials table)
+        const db = getRequestContext().env.DB;
+        await db.prepare(
+            `INSERT INTO trials (name, email, service_type, message)
+             VALUES (?, ?, ?, ?)`
+        ).bind(name, email, serviceTypeText, message || '').run();
+
+        // 2. Format Current Time (IST)
         const submittedAt = new Date().toLocaleString('en-IN', {
             timeZone: 'Asia/Kolkata',
             year: 'numeric',
@@ -45,7 +36,7 @@ export async function POST(request: Request) {
             hour12: true,
         }) + ' IST';
 
-        // 4. Format Admin Email HTML
+        // 3. Format Admin Email HTML
         const emailHtml = TrialEmailTemplate({
             name,
             email,
@@ -55,16 +46,7 @@ export async function POST(request: Request) {
         });
         const adminEmailHtml = `<!DOCTYPE html>${emailHtml}`;
 
-        // 5. Send Email to Admin
-        const sendAdminEmail = transporter.sendMail({
-            from: `"BizoraEdge Trials" <${config.email.smtpEmail}>`,
-            to: notificationEmail,
-            subject: `New Trial Request: ${name} - ${serviceTypeText}`,
-            replyTo: email,
-            html: adminEmailHtml,
-        });
-
-        // 6. Send User Auto-Responder
+        // 4. Send User Auto-Responder
         const autoResponderHtml = `
             <div style="font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #f3f4f6; padding: 40px 20px; width: 100%;">
                 <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); margin: 0 auto;">
@@ -95,15 +77,24 @@ export async function POST(request: Request) {
             </div>
         `;
 
-        const sendUserEmail = transporter.sendMail({
-            from: `"BizoraEdge Team" <${config.email.smtpEmail}>`,
-            to: email,
-            subject: 'We received your Trial Request!',
-            html: autoResponderHtml,
-        });
+        const resend = new Resend(config.email.resendApiKey);
 
-        // Execute email sending in the background without blocking the response (prevents UI hanging)
-        Promise.all([sendAdminEmail, sendUserEmail]).catch(err => {
+        // 5. Execute email sending in parallel
+        await Promise.all([
+            resend.emails.send({
+                from:    'BizoraEdge Trials <info@bizoraedge.com>',
+                to:      config.email.notificationEmail,
+                subject: `New Trial Request: ${name} - ${serviceTypeText}`,
+                replyTo: email,
+                html:    adminEmailHtml,
+            }),
+            resend.emails.send({
+                from:    'BizoraEdge Team <info@bizoraedge.com>',
+                to:      email,
+                subject: 'We received your Trial Request!',
+                html:    autoResponderHtml,
+            })
+        ]).catch(err => {
             console.error("Email sending failed in background:", err);
         });
 

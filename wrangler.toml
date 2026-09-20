@@ -1,0 +1,8 @@
+name = "bizoraedge"
+compatibility_date = "2024-03-20"
+pages_build_output_dir = ".vercel/output/static"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bizora_db"
+database_id = "your-database-id" # We can just use the dashboard bindings for production, but this helps locally if needed.

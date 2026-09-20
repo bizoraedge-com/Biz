@@ -10,5 +10,6 @@ export const config = {
         smtpEmail: process.env.SMTP_EMAIL || 'venkateshwarink@gmail.com',
         smtpPassword: process.env.SMTP_PASSWORD || 'wbrn ongq ewvw zjli',
         notificationEmail: process.env.NOTIFICATION_EMAIL || 'venkateshwarink@gmail.com',
+        resendApiKey: process.env.RESEND_API_KEY || '',
     }
 };

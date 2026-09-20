@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
-import pool from '@/lib/db';
-import nodemailer from 'nodemailer';
+import { getRequestContext } from '@cloudflare/next-on-pages';
+import { Resend } from 'resend';
 import { config } from '@/lib/config';
 import { ServiceEmailTemplate } from '@/components/email/ServiceEmailTemplate';
+
+export const runtime = 'edge';
 
 export async function POST(request: Request) {
     try {
@@ -13,27 +15,20 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: false, message: 'Missing required fields' }, { status: 400 });
         }
 
-        // 1. Insert into MySQL Database (service_requests table)
-        const query = `
-            INSERT INTO service_requests (name, email, service_type, message)
-            VALUES (?, ?, ?, ?)
-        `;
-        const values = [name, email, serviceType || 'Not specified', message || ''];
-        await pool.execute(query, values);
+        // Ensure all values are proper strings (not undefined/null)
+        const nameStr: string = String(name).trim();
+        const emailStr: string = String(email).trim();
+        const serviceTypeText: string = serviceType ? String(serviceType).trim() : 'Not specified';
+        const messageStr: string = message ? String(message).trim() : '';
 
-        // 2. Setup Nodemailer Transporter
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: config.email.smtpEmail,
-                pass: config.email.smtpPassword,
-            },
-        });
+        // 1. Insert into D1 Database (service_requests table)
+        const db = getRequestContext().env.DB;
+        await db.prepare(
+            `INSERT INTO service_requests (name, email, service_type, message)
+             VALUES (?, ?, ?, ?)`
+        ).bind(nameStr, emailStr, serviceTypeText, messageStr).run();
 
-        const notificationEmail = config.email.notificationEmail;
-        const serviceTypeText = serviceType || 'Not specified';
-
-        // 3. Format Current Time (IST)
+        // 2. Format Current Time (IST)
         const submittedAt = new Date().toLocaleString('en-IN', {
             timeZone: 'Asia/Kolkata',
             year: 'numeric',
@@ -45,26 +40,18 @@ export async function POST(request: Request) {
             hour12: true,
         }) + ' IST';
 
-        // 4. Format Admin Email HTML
+        // 3. Format Admin Email HTML
         const emailHtml = ServiceEmailTemplate({
-            name,
-            email,
+            name: nameStr,
+            email: emailStr,
             serviceType: serviceTypeText,
-            message,
+            message: messageStr,
             submittedAt
         });
         const adminEmailHtml = `<!DOCTYPE html>${emailHtml}`;
 
-        // 5. Send Email to Admin
-        const sendAdminEmail = transporter.sendMail({
-            from: `"BizoraEdge Services" <${config.email.smtpEmail}>`,
-            to: notificationEmail,
-            subject: `New Service Request: ${name} - ${serviceTypeText}`,
-            replyTo: email,
-            html: adminEmailHtml,
-        });
-
-        // 6. Send User Auto-Responder
+        // 4. Build User Auto-Responder HTML
+        const year = new Date().getFullYear();
         const autoResponderHtml = `
             <div style="font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #f3f4f6; padding: 40px 20px; width: 100%;">
                 <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); margin: 0 auto;">
@@ -77,7 +64,7 @@ export async function POST(request: Request) {
                         <tr>
                             <td style="padding: 10px 40px 40px;">
                                 <h2 style="color: #111827; font-size: 22px; font-weight: 700; margin: 0 0 20px 0;">Service Request Received!</h2>
-                                <p style="font-size: 16px; color: #4b5563; line-height: 1.6; margin: 0 0 20px 0;">Dear ${name},</p>
+                                <p style="font-size: 16px; color: #4b5563; line-height: 1.6; margin: 0 0 20px 0;">Dear ${nameStr},</p>
                                 <p style="font-size: 16px; color: #4b5563; line-height: 1.6; margin: 0 0 20px 0;">Thank you for your interest in BizoraEdge. We have received your request for our <strong>${serviceTypeText}</strong> services on ${submittedAt}.</p>
                                 <p style="font-size: 16px; color: #4b5563; line-height: 1.6; margin: 0 0 30px 0;">Our specialists will review your requirements and contact you shortly to discuss the next steps.</p>
                                 <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 0 0 30px 0;" />
@@ -87,7 +74,7 @@ export async function POST(request: Request) {
                         </tr>
                         <tr>
                             <td style="background-color: #f9fafb; padding: 20px; text-align: center; border-top: 1px solid #e5e7eb;">
-                                <p style="margin: 0; font-size: 13px; color: #9ca3af;">&copy; ${new Date().getFullYear()} BizoraEdge. All rights reserved.</p>
+                                <p style="margin: 0; font-size: 13px; color: #9ca3af;">&copy; ${year} BizoraEdge. All rights reserved.</p>
                             </td>
                         </tr>
                     </tbody>
@@ -95,20 +82,29 @@ export async function POST(request: Request) {
             </div>
         `;
 
-        const sendUserEmail = transporter.sendMail({
-            from: `"BizoraEdge Team" <${config.email.smtpEmail}>`,
-            to: email,
-            subject: 'We received your Service Request!',
-            html: autoResponderHtml,
-        });
+        const resend = new Resend(config.email.resendApiKey);
 
-        // Execute email sending in the background without blocking the response (prevents UI hanging)
-        Promise.all([sendAdminEmail, sendUserEmail]).catch(err => {
+        // 5. Execute email sending in parallel (non-blocking)
+        Promise.all([
+            resend.emails.send({
+                from:    'BizoraEdge Services <info@bizoraedge.com>',
+                to:      config.email.notificationEmail,
+                subject: `New Service Request: ${nameStr} - ${serviceTypeText}`,
+                replyTo: emailStr,
+                html:    adminEmailHtml,
+            }),
+            resend.emails.send({
+                from:    'BizoraEdge Team <info@bizoraedge.com>',
+                to:      emailStr,
+                subject: 'We received your Service Request!',
+                html:    autoResponderHtml,
+            })
+        ]).catch(err => {
             console.error("Email sending failed in background:", err);
         });
 
         return NextResponse.json({ success: true, message: 'Service requested successfully' }, { status: 200 });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error in service API:', error);
         return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
     }

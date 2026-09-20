@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
-import pool from '@/lib/db';
-import nodemailer from 'nodemailer';
+import { getRequestContext } from '@cloudflare/next-on-pages';
+import { Resend } from 'resend';
 import { config } from '@/lib/config';
 import { NewsletterEmailTemplate } from '@/components/email/NewsletterEmailTemplate';
+
+export const runtime = 'edge';
 
 export async function POST(request: Request) {
     try {
@@ -13,42 +15,16 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: false, message: 'Email is required' }, { status: 400 });
         }
         
-        // Basic email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             return NextResponse.json({ success: false, message: 'Invalid email address' }, { status: 400 });
         }
 
-        // 1. Create table if not exists (fail-safe for new deployments)
-        const createTableQuery = `
-            CREATE TABLE IF NOT EXISTS newsletters (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                email VARCHAR(255) NOT NULL,
-                subscribed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `;
-        await pool.execute(createTableQuery);
+        // 1. Insert into D1 Database
+        const db = getRequestContext().env.DB;
+        await db.prepare('INSERT INTO newsletters (email) VALUES (?)').bind(email).run();
 
-        // 2. Insert into MySQL Database (newsletters table)
-        const query = `
-            INSERT INTO newsletters (email)
-            VALUES (?)
-        `;
-        const values = [email];
-        await pool.execute(query, values);
-
-        // 3. Setup Nodemailer Transporter
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: config.email.smtpEmail,
-                pass: config.email.smtpPassword,
-            },
-        });
-
-        const notificationEmail = config.email.notificationEmail;
-
-        // 4. Format Current Time (IST)
+        // 2. Format Current Time (IST)
         const submittedAt = new Date().toLocaleString('en-IN', {
             timeZone: 'Asia/Kolkata',
             year: 'numeric',
@@ -60,20 +36,11 @@ export async function POST(request: Request) {
             hour12: true,
         }) + ' IST';
 
-        // 5. Format Admin Email HTML
+        // 3. Format Admin Email HTML
         const emailHtml = NewsletterEmailTemplate({ email, submittedAt });
         const adminEmailHtml = `<!DOCTYPE html>${emailHtml}`;
 
-        // 6. Send Email to Admin
-        const sendAdminEmail = transporter.sendMail({
-            from: `"BizoraEdge Newsletter" <${config.email.smtpEmail}>`,
-            to: notificationEmail,
-            subject: `New Newsletter Subscription: ${email}`,
-            replyTo: email,
-            html: adminEmailHtml,
-        });
-
-        // 7. Send User Welcome Auto-Responder
+        // 4. Send User Welcome Auto-Responder
         const autoResponderHtml = `
             <div style="font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #f3f4f6; padding: 40px 20px; width: 100%;">
                 <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); margin: 0 auto;">
@@ -104,15 +71,24 @@ export async function POST(request: Request) {
             </div>
         `;
 
-        const sendUserEmail = transporter.sendMail({
-            from: `"BizoraEdge Team" <${config.email.smtpEmail}>`,
-            to: email,
-            subject: 'Welcome to the BizoraEdge Newsletter',
-            html: autoResponderHtml,
-        });
+        const resend = new Resend(config.email.resendApiKey);
 
-        // Execute email sending in the background without blocking the response (prevents UI hanging)
-        Promise.all([sendAdminEmail, sendUserEmail]).catch(err => {
+        // 5. Execute email sending in parallel
+        await Promise.all([
+            resend.emails.send({
+                from:    'BizoraEdge Newsletter <info@bizoraedge.com>',
+                to:      config.email.notificationEmail,
+                subject: `New Newsletter Subscription: ${email}`,
+                replyTo: email,
+                html:    adminEmailHtml,
+            }),
+            resend.emails.send({
+                from:    'BizoraEdge Team <info@bizoraedge.com>',
+                to:      email,
+                subject: 'Welcome to the BizoraEdge Newsletter',
+                html:    autoResponderHtml,
+            })
+        ]).catch(err => {
             console.error("Email sending failed in background:", err);
         });
 
