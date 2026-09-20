@@ -338,7 +338,7 @@
     margin-bottom: 1.5rem;
   }
   .container {
-    padding: 6rem 1.5rem 4rem;
+    padding: 8rem 1.5rem 4rem;
   }
   .description {
     font-size: 1.1rem;
@@ -388,7 +388,7 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 5rem 1.25rem 3rem;
+    padding: 8rem 1.25rem 3rem;
   }
   .title {
     font-size: clamp(1.8rem, 10vw, 2.2rem);
