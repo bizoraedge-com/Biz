@@ -23,7 +23,7 @@ export function Footer() {
                 body: JSON.stringify({ email })
             });
 
-            const data = await response.json();
+            const data = (await response.json()) as any;
 
             if (response.ok && data.success) {
                 setStatus('success');

@@ -48,7 +48,7 @@ export function ContactFooter() {
                 body: JSON.stringify(payload)
             });
 
-            const data = await res.json();
+            const data = (await res.json()) as any;
 
             if (res.ok && data.success) {
                 setStatus('success');
