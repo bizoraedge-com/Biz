@@ -165,6 +165,21 @@ export default function ContactPage() {
                                         </div>
                                     </div>
                                 </div>
+
+                                <div style={{ marginTop: '2.5rem', paddingTop: '2rem', borderTop: '1px solid #f1f5f9', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-muted)' }}>Follow Us</h3>
+                                    <div style={{ display: 'flex', gap: '1rem' }}>
+                                        <a href="https://www.instagram.com/bizora_edge/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '12px', backgroundColor: '#f8fafc', color: '#1e293b', transition: 'all 0.3s ease', textDecoration: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#eff6ff'; e.currentTarget.style.color = '#3b82f6'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f8fafc'; e.currentTarget.style.color = '#1e293b'; e.currentTarget.style.transform = 'translateY(0)'; }} aria-label="Instagram">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                        </a>
+                                        <a href="https://x.com/Bizoraedge" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '12px', backgroundColor: '#f8fafc', color: '#1e293b', transition: 'all 0.3s ease', textDecoration: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#eff6ff'; e.currentTarget.style.color = '#3b82f6'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f8fafc'; e.currentTarget.style.color = '#1e293b'; e.currentTarget.style.transform = 'translateY(0)'; }} aria-label="X">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733-16z" /><path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772" /></svg>
+                                        </a>
+                                        <a href="https://www.linkedin.com/company/bizoraedge/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '12px', backgroundColor: '#f8fafc', color: '#1e293b', transition: 'all 0.3s ease', textDecoration: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#eff6ff'; e.currentTarget.style.color = '#3b82f6'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f8fafc'; e.currentTarget.style.color = '#1e293b'; e.currentTarget.style.transform = 'translateY(0)'; }} aria-label="LinkedIn">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
 
                             <div style={{ backgroundColor: '#ffffff', padding: 'clamp(1.5rem, 5vw, 3rem)', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,51,102,0.05)' }}>
@@ -238,21 +253,29 @@ export default function ContactPage() {
 
                 {/* Success Modal Popup */}
                 {status === 'success' && (
-                    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
-                        <div style={{ backgroundColor: '#ffffff', padding: '3rem', borderRadius: '16px', maxWidth: '500px', width: '90%', textAlign: 'center', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
-                            <div style={{ width: '64px', height: '64px', backgroundColor: '#e6f4ea', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem auto' }}>
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#34a853" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
+                    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, animation: 'fadeIn 0.3s forwards' }}>
+                        <div style={{ backgroundColor: '#ffffff', padding: '3.5rem 3rem', borderRadius: '24px', maxWidth: '480px', width: '90%', textAlign: 'center', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)', animation: 'scaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards' }}>
+                            <div style={{ width: '80px', height: '80px', backgroundColor: '#eff6ff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem auto', color: '#2563eb', boxShadow: '0 0 0 10px rgba(37, 99, 235, 0.1)' }}>
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
                             </div>
-                            <h2 style={{ fontSize: '1.75rem', fontWeight: 700, color: '#1a202c', marginBottom: '1rem' }}>Thank You!</h2>
-                            <p style={{ fontSize: '1.1rem', color: '#4a5568', lineHeight: 1.6, marginBottom: '2rem' }}>
-                                Your enquiry has been successfully submitted. Our team will review your message and respond to you <strong>within 24 hours</strong>.
+                            <h2 style={{ fontSize: '1.875rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', letterSpacing: '-0.025em' }}>Message Sent!</h2>
+                            <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.6, marginBottom: '2.5rem' }}>
+                                Thank you for reaching out. Our team will review your enquiry and respond to you <strong>within 24 hours</strong>.
                             </p>
-                            <Button onClick={() => setStatus('idle')} style={{ background: 'linear-gradient(90deg, #0052cc 0%, #002060 50%, #0052cc 100%)', backgroundSize: '200% 100%', color: 'white', padding: '0.75rem 2rem', borderRadius: '4px', fontSize: '1.05rem', fontWeight: 600, border: 'none', cursor: 'pointer', width: '100%', transition: 'background-position 0.4s ease' }}>
-                                Close
+                            <Button onClick={() => setStatus('idle')} style={{ background: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)', color: 'white', padding: '1rem 2rem', borderRadius: '12px', fontSize: '1.05rem', fontWeight: 700, border: 'none', cursor: 'pointer', width: '100%', transition: 'all 0.3s ease', boxShadow: '0 4px 14px rgba(29, 78, 216, 0.3)' }}
+                                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(29, 78, 216, 0.4)'; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 14px rgba(29, 78, 216, 0.3)'; }}
+                            >
+                                Back to Website
                             </Button>
                         </div>
+                        <style dangerouslySetInnerHTML={{__html: `
+                            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+                            @keyframes scaleUp { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+                        `}} />
                     </div>
                 )}
             </main>
