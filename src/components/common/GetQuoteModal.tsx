@@ -9,7 +9,7 @@ interface GetQuoteModalProps {
     defaultService?: string;
 }
 
-export function GetQuoteModal({ isOpen, onClose }: GetQuoteModalProps) {
+export function GetQuoteModal({ isOpen, onClose, defaultService }: GetQuoteModalProps) {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
