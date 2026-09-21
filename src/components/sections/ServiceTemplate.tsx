@@ -111,6 +111,7 @@ export default function ServiceTemplate({ title, subtitle, description, benefits
             <GetQuoteModal 
                 isOpen={isModalOpen} 
                 onClose={() => setIsModalOpen(false)} 
+                defaultService={subtitle}
             />
         </div>
     );

@@ -2,6 +2,7 @@ interface QuoteEmailTemplateProps {
   name: string;
   email: string;
   phone: string;
+  projectType: string;
   message: string;
   submittedAt: string;
 }
@@ -10,6 +11,7 @@ export function QuoteEmailTemplate({
   name,
   email,
   phone,
+  projectType,
   message,
   submittedAt
 }: QuoteEmailTemplateProps) {
@@ -61,6 +63,12 @@ export function QuoteEmailTemplate({
                       <p style="margin: 4px 0 0 0; font-size: 14px; color: #0052cc; font-weight: 500; display: inline-block; background-color: #eff6ff; padding: 4px 10px; border-radius: 4px;">
                         ${submittedAt}
                       </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-bottom: 20px;">
+                      <p style="margin: 0; font-size: 12px; text-transform: uppercase; color: #9ca3af; font-weight: 600; letter-spacing: 1px;">Service Requested</p>
+                      <p style="margin: 4px 0 0 0; font-size: 16px; color: #1f2937; font-weight: 500;">${projectType}</p>
                     </td>
                   </tr>
                   <tr>

@@ -9,7 +9,8 @@ export const runtime = 'edge';
 export async function POST(request: Request) {
     try {
         const body = (await request.json()) as any;
-        const { name, email, phone, message } = body;
+        const { name, email, phone, message, service } = body;
+        const projectType = service || 'General Inquiry';
 
         if (!name || !email || !message || !phone) {
             return NextResponse.json({ success: false, message: 'Missing required fields' }, { status: 400 });
@@ -24,7 +25,7 @@ export async function POST(request: Request) {
         await db.prepare(
             `INSERT INTO quotes (name, email, phone, project_type, message)
              VALUES (?, ?, ?, ?, ?)`
-        ).bind(name, email, phone, 'Not specified', message).run();
+        ).bind(name, email, phone, projectType, message).run();
 
         // 2. Format Current Time (IST)
         const submittedAt = new Date().toLocaleString('en-IN', {
@@ -43,7 +44,8 @@ export async function POST(request: Request) {
             name, 
             email, 
             phone,
-            message, 
+            message,
+            projectType,
             submittedAt 
         });
         const adminEmailHtml = `<!DOCTYPE html>${emailHtml}`;

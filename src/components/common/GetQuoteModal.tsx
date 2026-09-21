@@ -14,6 +14,7 @@ export function GetQuoteModal({ isOpen, onClose }: GetQuoteModalProps) {
         name: '',
         email: '',
         phone: '',
+        service: defaultService || 'General Inquiry',
         message: ''
     });
 
@@ -26,7 +27,7 @@ export function GetQuoteModal({ isOpen, onClose }: GetQuoteModalProps) {
             document.body.style.overflow = 'hidden';
             setIsSubmitting(false);
             setIsSuccess(false);
-            setFormData({ name: '', email: '', phone: '', message: '' });
+            setFormData({ name: '', email: '', phone: '', service: defaultService || 'General Inquiry', message: '' });
             setErrors({ phone: '', email: '' });
         } else {
             document.body.style.overflow = '';
@@ -38,7 +39,7 @@ export function GetQuoteModal({ isOpen, onClose }: GetQuoteModalProps) {
 
     if (!isOpen) return null;
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         if (name === 'email') setErrors(prev => ({ ...prev, email: '' }));
         if (name === 'phone') {
@@ -152,6 +153,23 @@ export function GetQuoteModal({ isOpen, onClose }: GetQuoteModalProps) {
                             <form onSubmit={handleSubmit} className={styles.form}>
                                 <div className={styles.formGroup}>
                                     <input type="text" name="name" className={styles.input} placeholder="Name" value={formData.name} onChange={handleChange} required />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    {defaultService ? (
+                                        <input type="text" name="service" className={styles.input} value={formData.service} readOnly style={{ color: '#64748b', backgroundColor: '#f8fafc', cursor: 'not-allowed' }} />
+                                    ) : (
+                                        <select name="service" className={styles.select} value={formData.service} onChange={handleChange} required>
+                                            <option value="General Inquiry">General Inquiry</option>
+                                            <option value="Custom Software Development">Custom Software Development</option>
+                                            <option value="Mobile Application Development">Mobile Application Development</option>
+                                            <option value="SaaS Development">SaaS Development</option>
+                                            <option value="AI Powered Applications">AI Powered Applications</option>
+                                            <option value="Fintech Solutions">Fintech Solutions</option>
+                                            <option value="Blockchain Development">Blockchain Development</option>
+                                            <option value="IoT Solutions">IoT Solutions</option>
+                                            <option value="CRM Development">CRM Development</option>
+                                        </select>
+                                    )}
                                 </div>
                                 <div className={styles.formGroup}>
                                     <input type="email" name="email" className={styles.input} style={errors.email ? { borderBottomColor: '#ef4444' } : {}} placeholder="E-mail" value={formData.email} onChange={handleChange} required />

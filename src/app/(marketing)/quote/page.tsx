@@ -8,13 +8,14 @@ export default function QuotePage() {
         name: '',
         email: '',
         phone: '',
+        service: 'General Inquiry',
         message: ''
     });
 
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errors, setErrors] = useState({ phone: '', email: '' });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         if (name === 'email') setErrors(prev => ({ ...prev, email: '' }));
         if (name === 'phone') {
@@ -113,6 +114,19 @@ export default function QuotePage() {
                         <form onSubmit={handleSubmit} className={styles.form}>
                             <div className={styles.formGroup}>
                                 <input type="text" name="name" className={styles.input} placeholder="Name" value={formData.name} onChange={handleChange} required />
+                            </div>
+                            <div className={styles.formGroup}>
+                                <select name="service" className={styles.select} value={formData.service} onChange={handleChange} required>
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Custom Software Development">Custom Software Development</option>
+                                    <option value="Mobile Application Development">Mobile Application Development</option>
+                                    <option value="SaaS Development">SaaS Development</option>
+                                    <option value="AI Powered Applications">AI Powered Applications</option>
+                                    <option value="Fintech Solutions">Fintech Solutions</option>
+                                    <option value="Blockchain Development">Blockchain Development</option>
+                                    <option value="IoT Solutions">IoT Solutions</option>
+                                    <option value="CRM Development">CRM Development</option>
+                                </select>
                             </div>
                             <div className={styles.formGroup}>
                                 <input type="email" name="email" className={styles.input} style={errors.email ? { borderBottomColor: '#ef4444' } : {}} placeholder="E-mail" value={formData.email} onChange={handleChange} required />
