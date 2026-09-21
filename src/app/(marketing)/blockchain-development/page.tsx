@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/blockchain-development' },
+    alternates: { canonical: '/blockchain-development' },
     title: 'Blockchain Development Company | Web3 Solutions | BizoraEdge',
     description: 'Blockchain technology can create new ways to manage transactions, ownership, verification and digital interactions. BizoraEdge develops blockchain and Web3 applications with a focus on practical use rather than technology for its own sake.',
 };

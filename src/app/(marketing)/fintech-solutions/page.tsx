@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/fintech-solutions' },
+    alternates: { canonical: '/fintech-solutions' },
     title: 'FinTech Software Development Company | BizoraEdge',
     description: 'Financial technology requires careful thinking around usability, reliability, integrations and data. BizoraEdge develops FinTech applications and supporting digital systems around specific financial workflows and business requirements.',
 };

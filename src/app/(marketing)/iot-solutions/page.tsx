@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/iot-solutions' },
+    alternates: { canonical: '/iot-solutions' },
     title: 'IoT Development Company | IoT Solutions | BizoraEdge',
     description: 'IoT can connect devices, systems and people—but collecting data is only the beginning. BizoraEdge develops IoT applications that help organizations monitor, manage and use connected information more effectively.',
 };

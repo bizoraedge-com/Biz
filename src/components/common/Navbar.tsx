@@ -65,7 +65,7 @@ export function Navbar() {
                                 <div className={styles.featuresArea}>
                                     <div className={styles.megaSectionTitle}>Our Services</div>
                                     <div className={styles.featuresGrid}>
-                                        <Link href="/services/web-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/web-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                                             </div>
@@ -74,7 +74,7 @@ export function Navbar() {
                                                 <div className={styles.featureDesc}>Scalable and responsive web solutions</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/mobile-app-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/mobile-app-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                                             </div>
@@ -83,7 +83,7 @@ export function Navbar() {
                                                 <div className={styles.featureDesc}>Native and cross-platform mobile apps</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/crm-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/crm-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                                             </div>
@@ -92,7 +92,7 @@ export function Navbar() {
                                                 <div className={styles.featureDesc}>Customer relationship management tools</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/iot-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/iot-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                                             </div>
@@ -101,7 +101,7 @@ export function Navbar() {
                                                 <div className={styles.featureDesc}>Connected devices and smart platforms</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/blockchain-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/blockchain-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
                                             </div>
@@ -110,7 +110,7 @@ export function Navbar() {
                                                 <div className={styles.featureDesc}>Decentralized networks and smart contracts</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/fintech-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/fintech-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
                                             </div>
@@ -119,7 +119,7 @@ export function Navbar() {
                                                 <div className={styles.featureDesc}>Secure financial architectures and platforms</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/enterprise-software" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/enterprise-software" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/></svg>
                                             </div>
@@ -128,7 +128,7 @@ export function Navbar() {
                                                 <div className={styles.featureDesc}>Custom software for large organizations</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/digital-marketing" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/digital-marketing" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
                                             </div>
@@ -137,7 +137,7 @@ export function Navbar() {
                                                 <div className={styles.featureDesc}>Data-driven growth and marketing strategies</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/custom-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/custom-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
                                             </div>
@@ -231,7 +231,7 @@ export function Navbar() {
                             <div className={styles.megaMenuBody} style={{ padding: '0', flexDirection: 'column' }}>
                                 <div className={styles.featuresArea}>
                                     <div className={styles.featuresGrid}>
-                                        <Link href="/services/web-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/web-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                                             </div>
@@ -239,7 +239,7 @@ export function Navbar() {
                                                 <div className={styles.featureTitle}>Web Development</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/mobile-app-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/mobile-app-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                                             </div>
@@ -247,7 +247,7 @@ export function Navbar() {
                                                 <div className={styles.featureTitle}>Mobile App Development</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/crm-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/crm-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                                             </div>
@@ -255,7 +255,7 @@ export function Navbar() {
                                                 <div className={styles.featureTitle}>CRM Development</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/iot-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/iot-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                                             </div>
@@ -263,7 +263,7 @@ export function Navbar() {
                                                 <div className={styles.featureTitle}>IoT Solutions</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/blockchain-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/blockchain-development" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
                                             </div>
@@ -271,7 +271,7 @@ export function Navbar() {
                                                 <div className={styles.featureTitle}>Blockchain Development</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/fintech-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/fintech-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
                                             </div>
@@ -279,7 +279,7 @@ export function Navbar() {
                                                 <div className={styles.featureTitle}>FinTech Solutions</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/enterprise-software" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/enterprise-software" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/></svg>
                                             </div>
@@ -287,7 +287,7 @@ export function Navbar() {
                                                 <div className={styles.featureTitle}>Enterprise Software</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/digital-marketing" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/digital-marketing" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
                                             </div>
@@ -295,7 +295,7 @@ export function Navbar() {
                                                 <div className={styles.featureTitle}>Digital Marketing</div>
                                             </div>
                                         </Link>
-                                        <Link href="/services/custom-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
+                                        <Link href="/custom-solutions" className={styles.featureItem} style={{ textDecoration: 'none' }} onClick={handleMenuLinkClick}>
                                             <div className={styles.featureIcon}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
                                             </div>

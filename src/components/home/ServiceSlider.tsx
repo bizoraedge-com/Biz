@@ -24,7 +24,7 @@ export function ServiceSlider() {
                         {services.map((service, idx) => {
                             const slug = service.toLowerCase().replace(/\s+/g, '-');
                             return (
-                                <a href={`/services/${slug}`} key={`${setIndex}-${idx}`} className={styles.sliderItem}>
+                                <a href={`/${slug}`} key={`${setIndex}-${idx}`} className={styles.sliderItem}>
                                     <span className={styles.dot}></span>
                                     {service}
                                 </a>

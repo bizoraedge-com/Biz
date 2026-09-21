@@ -150,6 +150,40 @@ export default function HomepageSchema() {
     ],
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://bizoraedge.com/#website",
+        "name": "BizoraEdge",
+        "alternateName": "BizoraEdge",
+        "url": "https://bizoraedge.com/"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://bizoraedge.com/#organization",
+        "name": "BizoraEdge",
+        "url": "https://bizoraedge.com/",
+        "logo": "https://bizoraedge.com/og-image.png",
+        "description": "BizoraEdge builds custom software, SaaS platforms, mobile apps, AI, FinTech, blockchain, CRM and IoT solutions to help businesses grow.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91 93446 97948",
+          "contactType": "customer support",
+          "email": "business@bizoraedge.com",
+          "availableLanguage": ["English"]
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/bizoraedge",
+          "https://www.facebook.com/company.bizoraedge",
+          "https://x.com/bizoraedge",
+          "https://www.instagram.com/bizora_edge/"
+        ]
+      }
+    ]
+  };
+
   return (
     <>
       <script
@@ -161,6 +195,11 @@ export default function HomepageSchema() {
         id="faq-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        id="combined-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
     </>
   );

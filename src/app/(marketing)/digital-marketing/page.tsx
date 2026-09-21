@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/digital-marketing' },
+    alternates: { canonical: '/digital-marketing' },
     title: 'Digital Marketing Services | SEO & Online Growth | BizoraEdge',
     description: 'Having a website is only the beginning. Your customers need to discover you, understand what you offer and have a clear reason to take the next step. BizoraEdge provides digital marketing services focused on improving online visibility, reaching relevant audiences and supporting measurable business goals.',
 };

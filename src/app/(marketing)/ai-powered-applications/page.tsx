@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/ai-powered-applications' },
+    alternates: { canonical: '/ai-powered-applications' },
     title: 'AI Powered Applications | BizoraEdge',
     description: 'Integrate artificial intelligence to automate processes and unlock new capabilities.',
 };

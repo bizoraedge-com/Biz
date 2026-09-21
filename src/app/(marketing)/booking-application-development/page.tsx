@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/booking-application-development' },
+    alternates: { canonical: '/booking-application-development' },
     title: 'Booking Application Development | BizoraEdge',
     description: 'Custom booking and scheduling applications for modern businesses.',
 };

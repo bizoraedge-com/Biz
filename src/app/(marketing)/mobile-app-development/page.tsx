@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/mobile-app-development' },
+    alternates: { canonical: '/mobile-app-development' },
     title: 'Mobile App Development Company | iOS & Android | BizoraEdge',
     description: 'Your customers expect digital experiences that work wherever they are. BizoraEdge develops mobile applications designed around usability, performance and integration with the systems behind the experience.',
 };

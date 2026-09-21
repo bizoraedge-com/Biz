@@ -8,14 +8,14 @@ export const metadata: Metadata = {
 };
 
 const SERVICE_ITEMS = [
-    { title: "Web Development", desc: "Build responsive websites and web applications that are easy to use, maintain and scale.", link: "/services/web-development" },
-    { title: "Mobile Application Development", desc: "Create mobile experiences that put your products, services and business processes directly into users' hands.", link: "/services/mobile-app-development" },
-    { title: "Enterprise Software Development", desc: "Connect processes, teams and data through custom enterprise applications designed around your organization.", link: "/services/enterprise-software" },
-    { title: "CRM Development", desc: "Create a customer management system that gives your teams a clearer view of leads, customers, sales activity and relationships.", link: "/services/crm-development" },
-    { title: "Blockchain & Web3 Development", desc: "Build practical blockchain applications, smart contracts and Web3 experiences around genuine business use cases.", link: "/services/blockchain-development" },
-    { title: "IoT Solutions", desc: "Connect devices, data and business operations through IoT applications designed for monitoring, automation and visibility.", link: "/services/iot-solutions" },
-    { title: "FinTech Solutions", desc: "Develop digital financial products and connected financial workflows with technology designed around reliability and usability.", link: "/services/fintech-solutions" },
-    { title: "Digital Marketing", desc: "Build stronger online visibility with digital marketing strategies focused on reaching relevant audiences and supporting business growth.", link: "/services/digital-marketing" }
+    { title: "Web Development", desc: "Build responsive websites and web applications that are easy to use, maintain and scale.", link: "/web-development" },
+    { title: "Mobile Application Development", desc: "Create mobile experiences that put your products, services and business processes directly into users' hands.", link: "/mobile-app-development" },
+    { title: "Enterprise Software Development", desc: "Connect processes, teams and data through custom enterprise applications designed around your organization.", link: "/enterprise-software" },
+    { title: "CRM Development", desc: "Create a customer management system that gives your teams a clearer view of leads, customers, sales activity and relationships.", link: "/crm-development" },
+    { title: "Blockchain & Web3 Development", desc: "Build practical blockchain applications, smart contracts and Web3 experiences around genuine business use cases.", link: "/blockchain-development" },
+    { title: "IoT Solutions", desc: "Connect devices, data and business operations through IoT applications designed for monitoring, automation and visibility.", link: "/iot-solutions" },
+    { title: "FinTech Solutions", desc: "Develop digital financial products and connected financial workflows with technology designed around reliability and usability.", link: "/fintech-solutions" },
+    { title: "Digital Marketing", desc: "Build stronger online visibility with digital marketing strategies focused on reaching relevant audiences and supporting business growth.", link: "/digital-marketing" }
 ];
 
 export default function ServicesPage() {

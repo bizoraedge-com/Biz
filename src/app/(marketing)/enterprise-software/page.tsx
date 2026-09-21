@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/enterprise-software' },
+    alternates: { canonical: '/enterprise-software' },
     title: 'Enterprise Software Development Company | BizoraEdge',
     description: 'Large organizations often work across multiple teams, systems and workflows. Custom enterprise software can bring those processes together and create better visibility across the organization.',
 };

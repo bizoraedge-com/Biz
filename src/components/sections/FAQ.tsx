@@ -97,7 +97,9 @@ export function FAQ() {
                             </svg>
                         </button>
                         <div className={styles.faqAnswer}>
-                            <p>{f.a}</p>
+                            <div className={styles.faqAnswerInner}>
+                                <p>{f.a}</p>
+                            </div>
                         </div>
                     </div>
                 ))}

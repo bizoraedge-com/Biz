@@ -16,7 +16,7 @@
 .sectionTitle {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #0f172a !important;
   margin-bottom: 1rem;
 }
 
@@ -69,25 +69,33 @@
 }
 
 .faqAnswer {
-  padding: 0 2rem;
-  max-height: 0;
-  opacity: 0;
-  visibility: hidden;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  color: #475569;
-  line-height: 1.7;
-  font-size: 1.05rem;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+  width: 100%;
 }
 
-.faqAnswer p {
-  color: inherit;
+.faqAnswerInner {
+  overflow: hidden;
+  padding: 0 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.faqAnswerInner p {
+  color: #475569 !important;
+  line-height: 1.7;
+  font-size: 1.05rem;
   margin: 0;
   padding-bottom: 1.5rem;
 }
 
 .faqItem[data-active="true"] .faqAnswer {
-  max-height: 500px;
+  grid-template-rows: 1fr;
+}
+
+.faqItem[data-active="true"] .faqAnswerInner {
   opacity: 1;
   visibility: visible;
 }
@@ -100,12 +108,14 @@
     padding: 1.25rem 1.5rem;
     font-size: 1.05rem;
   }
-  .faqAnswer {
+  .faqAnswerInner {
     padding: 0 1.5rem;
+  }
+  .faqAnswerInner p {
     font-size: 0.95rem;
   }
-  .faqItem[data-active="true"] .faqAnswer {
-    padding: 0 1.5rem 1.5rem;
+  .faqItem[data-active="true"] .faqAnswerInner {
+    padding-bottom: 1.5rem;
   }
 }
 
@@ -117,10 +127,10 @@
     padding: 1rem;
     font-size: 1rem;
   }
-  .faqAnswer {
-    padding: 0 1rem 1rem;
+  .faqAnswerInner {
+    padding: 0 1rem;
   }
-  .faqItem[data-active="true"] .faqAnswer {
-    padding: 0 1rem 1rem;
+  .faqItem[data-active="true"] .faqAnswerInner {
+    padding-bottom: 1rem;
   }
 }

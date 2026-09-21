@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/web-development' },
+    alternates: { canonical: '/web-development' },
     title: 'Web Development Company | Custom Web Applications | BizoraEdge',
     description: 'A good website should do more than look professional. It should communicate clearly, work smoothly across devices and support the action you want visitors to take. BizoraEdge develops websites and web applications around user experience, performance and business requirements.',
 };

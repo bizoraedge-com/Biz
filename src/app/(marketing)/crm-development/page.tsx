@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ServiceTemplate from '@/components/sections/ServiceTemplate';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/crm-development' },
+    alternates: { canonical: '/crm-development' },
     title: 'Custom CRM Development Company | BizoraEdge',
     description: 'Build custom CRM software for sales, customer management, workflows, reporting and business automation with BizoraEdge.',
 };

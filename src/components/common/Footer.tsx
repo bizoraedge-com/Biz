@@ -55,15 +55,15 @@ export function Footer() {
         {
             title: "Core Solutions",
             links: [
-                { name: "Custom Software Development", href: "/services/custom-software-development" },
-                { name: "Booking Application Development", href: "/services/booking-application-development" },
-                { name: "CRM Development", href: "/services/crm-development" },
-                { name: "IoT Solutions", href: "/services/iot-solutions" },
-                { name: "Mobile Application Development", href: "/services/mobile-app-development" },
-                { name: "FinTech Solutions", href: "/services/fintech-solutions" },
-                { name: "AI-Powered Applications", href: "/services/ai-powered-applications" },
-                { name: "Blockchain Solutions", href: "/services/blockchain-development" },
-                { name: "SaaS Development", href: "/services/saas-development" }
+                { name: "Custom Software Development", href: "/custom-software-development" },
+                { name: "Booking Application Development", href: "/booking-application-development" },
+                { name: "CRM Development", href: "/crm-development" },
+                { name: "IoT Solutions", href: "/iot-solutions" },
+                { name: "Mobile Application Development", href: "/mobile-app-development" },
+                { name: "FinTech Solutions", href: "/fintech-solutions" },
+                { name: "AI-Powered Applications", href: "/ai-powered-applications" },
+                { name: "Blockchain Solutions", href: "/blockchain-development" },
+                { name: "SaaS Development", href: "/saas-development" }
             ]
         },
         {

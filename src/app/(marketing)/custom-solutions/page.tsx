@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    alternates: { canonical: '/services/custom-solutions' },
+    alternates: { canonical: '/custom-solutions' },
     title: 'Custom Business Software Solutions | BizoraEdge',
     description: 'BizoraEdge can work with you to design custom applications, automation tools, dashboards, portals and integrations around specialized business requirements.',
 };
